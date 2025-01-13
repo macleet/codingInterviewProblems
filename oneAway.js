@@ -15,8 +15,8 @@ pale, bake -> false
 
 function oneAway(str1, str2) {
   if (str1.length === str2.length) return replace(str1.split(""), str2.split(""));
-  else if (str1.length + 1 === str2.length) return insert(str2, str1);
-  else if (str1.length === str2.length + 1) return insert(str1, str2);
+  else if (str1.length + 1 === str2.length) return insert(str2.split(""), str1.split(""));
+  else if (str1.length === str2.length + 1) return insert(str1.split(""), str2.split(""));
   return false;
 }
   
@@ -30,7 +30,12 @@ function replace(str1, str2) {
 }
 
 function insert(str1, str2) {
-  
+  let inserted = false;
+  for (let i = 0, j = 0; i < str1.length; i++, j++) {
+    if (str1[i] !== str2[j]) j++;
+    else if (inserted && str1[i] !== str2[j]) return false;
+  }
+  return true;
 }
 
-console.log(oneAway("pale", "payy"));
+console.log(oneAway("pale", "pnale"));
