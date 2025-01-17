@@ -214,33 +214,4 @@ class DoublyLinkedList {
   }
 }
 
-const head = new Node(0);
-
-// Singly Linked List
-const singlyLL = new SinglyLinkedList(head);
-singlyLL.insertEnd(1);
-singlyLL.insertEnd(3);
-singlyLL.insertEnd(4);
-singlyLL.insertAt(2, 2);
-
-singlyLL.deleteEnd();
-singlyLL.deleteStart();
-singlyLL.deleteAt(1);
-
-singlyLL.print();
-singlyLL.search(3);
-
-// Doubly Linked List
-const doublyLL = new DoublyLinkedList(head);
-doublyLL.insertEnd(1);
-doublyLL.insertEnd(3);
-doublyLL.insertEnd(4);
-doublyLL.insertAt(2, 2);
-
-doublyLL.deleteEnd();
-doublyLL.deleteStart();
-doublyLL.deleteAt(1);
-
-doublyLL.print();
-doublyLL.print(true);
-doublyLL.search(3);
+module.exports = { SinglyLinkedList, DoublyLinkedList };
