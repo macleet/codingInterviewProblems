@@ -68,6 +68,12 @@ class SinglyLinkedList {
   }
   
   deleteEnd() {
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+      return;
+    } 
+
     let currentNode = this.head;
     while (currentNode) {
       if (currentNode.next === this.tail) {
@@ -166,11 +172,21 @@ class DoublyLinkedList {
   }
   
   deleteStart() {
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+      return;
+    } 
     this.head.next.prev = null;
     this.head = this.head.next; 
   }
   
   deleteEnd() {
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+      return;
+    }
     this.tail = this.tail.prev;
     this.tail.next = null;    
   }
