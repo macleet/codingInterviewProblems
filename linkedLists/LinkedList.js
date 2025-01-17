@@ -29,18 +29,28 @@ class SinglyLinkedList {
   
   insertStart(value) {
     const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      return;
+    }
     newNode.next = this.head;
     this.head = newNode;
   }
   
   insertEnd(value) {
     const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      return;
+    }
     this.tail.next = newNode;
     this.tail = newNode;
   }
   
   deleteAt(index) {
-    if (index === 0) deleteStart();
+    if (index === 0) this.deleteStart();
     
     let currentNode = this.head;
     while (currentNode) {
@@ -140,7 +150,8 @@ class DoublyLinkedList {
   }
   
   deleteAt(index) {
-    if (index === 0) deleteStart();
+    if (this.head === this.tail && index !== 0) return; 
+    else if (index === 0) this.deleteStart();
     
     let currentNode = this.head;
     while (currentNode) {
