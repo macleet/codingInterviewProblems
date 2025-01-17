@@ -7,7 +7,7 @@ class Node {
 }
 
 class SinglyLinkedList {
-  constructor(node) {
+  constructor(node = null) {
     this.head = node;
     this.tail = node;
   }
@@ -93,7 +93,7 @@ class SinglyLinkedList {
 }
 
 class DoublyLinkedList {
-  constructor(node) {
+  constructor(node = null) {
     this.head = node;
     this.tail = node;
   }
@@ -117,6 +117,11 @@ class DoublyLinkedList {
   
   insertStart(value) {
     const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      return;
+    }
     newNode.next = this.head;
     this.head.prev = newNode;
     this.head = newNode;
@@ -124,6 +129,11 @@ class DoublyLinkedList {
   
   insertEnd(value) {
     const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      return;
+    } 
     this.tail.next = newNode;
     newNode.prev = this.tail;
     this.tail = newNode;
