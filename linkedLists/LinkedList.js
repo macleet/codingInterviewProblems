@@ -161,9 +161,9 @@ class DoublyLinkedList {
     
     let currentNode = this.head;
     while (currentNode) {
-      if (index === 1) {
-        currentNode.next.next.prev = currentNode;
-        currentNode.next = currentNode.next.next;
+      if (index === 0) {
+        if (currentNode.prev) currentNode.prev.next = currentNode.next;
+        if (currentNode.next) currentNode.next.prev = currentNode.prev;
         return;
       }
       currentNode = currentNode.next;
