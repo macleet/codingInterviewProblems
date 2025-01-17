@@ -9,7 +9,7 @@ await page.goto("https://www.techinterviewhandbook.org/grind75/?hours=40&weeks=2
 const problemDescriptions = [];
 for (const listItem of await page.locator("[role='listitem']").all()) {
     const leetcodePage = await context.newPage();
-    if (await listItem.locator("svg").count() > 0) continue;  // skip premium problems
+    if (await listItem.locator("svg").count() > 1) continue;  // skip premium problems
     const problemName = await listItem.locator("a").textContent();
     const leetcodeLink = await listItem.locator("a").getAttribute("href");
     await leetcodePage.goto(leetcodeLink);
