@@ -17,12 +17,9 @@ for (const listItem of await page.locator("[role='listitem']").all()) {
     problemDescriptions.push(description);
     leetcodePage.close();
 
-    console.log();
     fs.writeFile(`${problemName.replace(/\s+/g, "")}.js`, "/*\n" + description + "\n*/", (err) => {
         if (err) console.error("Error writing file:", err)
     });
-
-    break;
 }
 
 await browser.close();
