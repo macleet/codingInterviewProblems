@@ -85,8 +85,8 @@ class SinglyLinkedList {
     }
   }
   
-  print() {
-    let currentNode = this.head;
+  print(head = null) {
+    let currentNode = head ? head : this.head;
     const list = [];
     while (currentNode) {
       list.push(currentNode.value)
@@ -191,8 +191,8 @@ class DoublyLinkedList {
     this.tail.next = null;    
   }
   
-  print(reverse = false) {
-    let currentNode = reverse ? this.tail : this.head;
+  print(node = null, reverse = false) {
+    currNode = node ? node : (reverse ? this.tail : this.head);
     const list = [];
     while (currentNode) {
       list.push(currentNode.value);
