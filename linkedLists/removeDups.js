@@ -4,32 +4,58 @@ Follow up: How would you solve this problem if a temporary buffer is not allowed
 Assumption: List nodes cannot be rearranged and must preserve order.
 */
 
-const { DoublyLinkedList } = require("./LinkedList.js");
+const { SinglyLinkedList, DoublyLinkedList } = require("./LinkedList.js");
 
-// Using hash map
-// function removeDups(list) {
-//     const nums = new Map();
-//     let currentNode = list.head;
-//     while (currentNode) {
-//         if (nums[currentNode.value]) {
-//             if (currentNode.prev) currentNode.prev.next = currentNode.next;
-//             if (currentNode.next) currentNode.next.prev = currentNode.prev;
-//         } else nums[currentNode.value] = true;
-//         currentNode = currentNode.next;
+// Using hash set (SLL)
+// function removeDups(node) {
+//     const set = new Set();
+//     let previousNode = null;
+//     while (node) {
+//         if (set.has(node.value)) {
+//             previousNode.next = node.next;
+//         } else {
+//             set.add(node.value);
+//             previousNode = node;
+//         }
+//         node = node.next;
 //     }
 // }
 
-// No buffer
-function removeDups(list) {
-  
-}
+// Using hash map (DLL)
+// function removeDups(node) {
+//     const set = new Set();
+//     while (node) {
+//         if (set.has(node.value)) {
+//             if (node.prev) node.prev.next = node.next;
+//             if (node.next) node.next.prev = node.prev;
+//         } else set.add(node.value);
+//         node = node.next;
+//     }
+// }
 
-const linkedList = new DoublyLinkedList();
-linkedList.insertStart(4);
-linkedList.insertStart(2);
-linkedList.insertStart(2);
-linkedList.insertStart(2);
-linkedList.insertStart(4);
-linkedList.print();
-removeDups(linkedList);
-linkedList.print();
+// No buffer (SLL)
+// function removeDups(node) {
+//     while (node) {
+//         let runner = node;
+//         while (runner.next) {
+//             if (runner.next.value === node.value) runner.next = runner.next.next;
+//             else runner = runner.next;
+//         }
+//         node = node.next;
+//     }
+// }
+
+// No buffer (DLL)
+function removeDups(node) {
+    while (node) {
+        let runner = node;
+        while (runner.next) {
+            if (runner.next.value === node.value) {
+                if (runner.next.next) runner.next.next.prev = runner;
+                runner.next = runner.next.next;
+            }
+            else runner = runner.next;
+        }
+        node = node.next;
+    }
+}
