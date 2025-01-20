@@ -26,7 +26,6 @@ function isEqual(h1, h2) {
 
 function palindrome(head) {
   const reversedHead = reverseList(head);
-  // SinglyLinkedList.print(reversedHead)
   return isEqual(head, reversedHead);
 }
 
