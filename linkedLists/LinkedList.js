@@ -115,6 +115,15 @@ class SinglyLinkedList {
       index++;
     }
   }
+
+  static length(node) {
+    let count = 0;
+    while (node) {
+      count++;
+      node = node.next;
+    }
+    return count;
+  }
 }
 
 class DoublyLinkedList {
@@ -229,6 +238,15 @@ class DoublyLinkedList {
       currentNode = currentNode.next;
       index++;
     }
+  }
+
+  static length(node) {
+    let count = 0;
+    while (node) {
+      count++;
+      node = node.next;
+    }
+    return count;
   }
 }
 
