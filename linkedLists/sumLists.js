@@ -36,24 +36,39 @@ function sumLists(h1, h2, carry) {
     return newNode;
 }
 
-function sumListsForward(h1, h2, carry) {
-
+class PartialSum {
+    constructor() {
+        this.sum = null;
+        this.carry = 0;
+    }
 }
 
-const num1 = new SinglyLinkedList();
-num1.insertEnd(6);
-num1.insertEnd(6);
-num1.insertEnd(6);
-num1.insertEnd(6);
-num1.print();
+function insertBefore(head, value) {
+    const newNode = new Node(value);
+    if (head) newNode.next = head;
+    return newNode;
+}
 
-const num2 = new SinglyLinkedList();
-num2.insertEnd(9);
-num2.insertEnd(9);
-num2.insertEnd(9);
-num2.insertEnd(9);
-num2.insertEnd(9);
-num2.print();
+function padWithZeros(head, padCount) {
+    while (padCount-- > 0) head = insertBefore(head, 0);
+    return head;
+}
 
-const newHead = sumLists(num1.head, num2.head, 0);
-SinglyLinkedList.print(newHead);
+function sumListHelper(h1, h2) {
+    if (!h1 && !h2) return new PartialSum();
+    let sum = sumListHelper(h1.next, h2.next);
+    const sumHead = insertBefore(sum.sum, (h1.value + h2.value + sum.carry) % 10);
+    sum.sum = sumHead;
+    sum.carry = Math.floor((h1.value + h2.value + sum.carry) / 10);
+    return sum;
+}
+
+function sumListsForward(h1, h2) {
+    const len1 = SinglyLinkedList.length(h1), len2 = SinglyLinkedList.length(h2);
+    if (len1 < len2) h1 = padWithZeros(h1, len2 - len1);
+    else h2 = padWithZeros(h2, len1 - len2);
+
+    let { sum, carry } = sumListHelper(h1, h2);
+    if (carry > 0) sum = insertBefore(sum, 1);
+    return sum;
+}
