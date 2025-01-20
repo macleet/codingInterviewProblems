@@ -95,6 +95,15 @@ class SinglyLinkedList {
     console.log(...list);
   }
   
+  static print(node) {
+    const list = [];
+    while (node) {
+      list.push(node.value);
+      node = node.next;
+    }
+    console.log(...list);
+  }
+
   search(value) {
     let currentNode = this.head, index = 0;
     while (currentNode) {
@@ -200,6 +209,15 @@ class DoublyLinkedList {
     }
     console.log(...list);
   }
+
+  static print(node) {
+    const list = [];
+    while (node) {
+      list.push(node.value);
+      node = node.next;
+    }
+    console.log(...list);
+  }
   
   search(value) {
     let currentNode = this.head, index = 0;
@@ -214,4 +232,4 @@ class DoublyLinkedList {
   }
 }
 
-module.exports = { SinglyLinkedList, DoublyLinkedList };
+module.exports = { Node, SinglyLinkedList, DoublyLinkedList };
